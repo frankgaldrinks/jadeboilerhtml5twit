@@ -7,3 +7,11 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+
+.errors {
+  color: red;
+}
+
+.sign-up {
+  max-width: 400px;
+}

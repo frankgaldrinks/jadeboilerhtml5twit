@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      .col-lg-8
+        h2 Account Info
+
+        p Username: #{user.username}
+        p Email: #{user.email}
+        p About Me: #{user.aboutme}
+        p Created: #{user.createdat}

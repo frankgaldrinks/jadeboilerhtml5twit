@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      .col-lg-12
+        h2 Signup
+        hr
+        form(action="/signup" method="post" role="form")
+          .form-group
+            .form-head
+              h4 Username
+            .errors
+              if (errors.username)
+                each error in errors.username
+                  p #{error}
+            input.sign-up.form-control(type="text" name="username" required)
+          .form-group
+            .form-head
+              h4 Password
+            .errors
+              if (errors.password)
+                each error in errors.password
+                  p #{error}
+            input.sign-up.form-control(type="password" name="password" required)
+          .form-group
+            .form-head
+              h4 Verify Password
+            .errors
+              if (errors.password)
+                each error in errors.password
+                  p #{error}
+            input.sign-up.form-control(type="password" name="verifypassword" required)
+          .form-group
+            .form-head
+              h4 Email
+            .errors
+              if (errors.email)
+                each error, i in errors.email
+                  p #{i}: #{error}
+            input.sign-up.form-control(type="email" name="email" required)
+          input.btn.btn-primary(type="submit" value="Submit")
