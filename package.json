@@ -14,6 +14,8 @@
     "connect-flash": "*",
     "bcrypt-nodejs": "*",
     "bcrypt": "*",
-    "validator": "*"
+    "validator": "*",
+    "node-uuid": "*",
+    "nodemailer": "*"
   }
 }

@@ -32,8 +32,8 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
-app.use(express.logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
@@ -44,7 +44,7 @@ app.use(passport.session());
 app.use(flash());
 app.use(function (req, res, next) {
  
-  if (!req.isAuthenticated()) {
+  if (!req.user) {
     console.log("We are not authenticated");
     if (req.signedCookies.rememberme) {
       console.log("we have a cookie at " + req.signedCookies.rememberme);
@@ -54,15 +54,20 @@ app.use(function (req, res, next) {
             if (err) {
               console.log(err);
             } else {
-              req.user = user;
+              return next();
               console.log("we are set");
             }
           });
+        } else {
+          return next();
         }
       });
+    } else {
+      return next();
     }
+  } else {
+    return next();
   }
-  next();
 });
 app.use(app.router);
 app.use(function (req, res) {
@@ -76,6 +81,7 @@ if ('development' == app.get('env')) {
 
 //basic routes
 app.get('/', basic.index);
+app.get('/verify', basic.verify);
 
 //user routes
 app.get('/account', ensureAuthenticated, users.read);

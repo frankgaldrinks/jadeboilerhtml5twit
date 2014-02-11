@@ -39,4 +39,12 @@ block content
                 each error, i in errors.email
                   p #{i}: #{error}
             input.sign-up.form-control(type="email" name="email" required)
+          .form-group
+            .form-head
+              h4 Verify Email
+            .errors
+              if (errors.email)
+                each error, i in errors.email
+                  p #{i}: #{error}
+            input.sign-up.form-control(type="email" name="verifyemail" required)
           input.btn.btn-primary(type="submit" value="Submit")
